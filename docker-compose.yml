@@ -1,0 +1,42 @@
+version: '3.7'
+
+volumes:
+  app-data:
+
+networks:
+  traefik-public:
+    external:
+      name: traefik-public
+
+services:        
+    proxy:
+      image: nginx/unit:1.23.0-python3.9
+      networks:
+        - traefik-public
+      volumes:
+        - app-data:/www
+      ports:
+        - "1488:22"
+      deploy:
+        mode: global
+        restart_policy:
+          condition: on-failure
+        placement:
+          constraints: [node.role == manager]
+        labels:
+          - "traefik.enable=true"
+          
+          - "traefik.http.middlewares.jdan-service-redirect.redirectscheme.scheme=https"
+          - "traefik.http.middlewares.jdan-service-redirect.redirectScheme.permanent=true"
+          
+          - "traefik.http.routers.jdan-service-insecure.rule=Host(`jdan.chez.work`)"
+          - "traefik.http.routers.jdan-service-insecure.entrypoints=web"
+          - "traefik.http.routers.jdan-service-insecure.service=jdan-service"
+          - "traefik.http.routers.jdan-service-insecure.middlewares=jdan-service-redirect"
+          
+          - "traefik.http.routers.jdan-service.rule=Host(`jdan.chez.work`)"
+          - "traefik.http.routers.jdan-service.entrypoints=websecure"
+          - "traefik.http.routers.jdan-service.tls.certresolver=letsencryptresolver"
+          - "traefik.http.routers.jdan-service.service=jdan-service"
+          
+          - "traefik.http.services.jdan-service.loadbalancer.server.port=8080"
