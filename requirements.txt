@@ -1,0 +1,7 @@
+django
+beautifulsoup4
+lxml
+aiohttp
+wikipya==4.0.0b0.post2
+pydantic
+jinja2

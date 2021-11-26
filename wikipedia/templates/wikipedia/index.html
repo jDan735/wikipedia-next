@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>search | wikipedia-next</title>
+    <link rel="stylesheet" href="/static/css/pico.min.css">
+
+    <script src="https://vuejs.org/js/vue.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js" integrity="sha512-u9akINsQsAkG9xjc1cnGF4zw5TFDwkxuc9vUp5dltDWYCSmyd0meygbvgXrlc/z7/o4a19Fb5V0OUE58J7dcyw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+<body>
+    <header id="app" class="container">
+        <center>
+            <h1 style="display:inline-block">wikipedia-next</h1>
+            <a style="margin-left: 1em;" href="/about">About</a>
+        </center>
+        <div class="grid">
+            <input @focusout="update_previews" v-model="query" id="search" type="search" placeholder="Искать в Википедии">
+            <!--<input type="button" value="Поиск" v-on:click="update_previews">-->
+        </div>
+
+        <br>
+
+        <acticle v-for="result in results">
+            <!-- <header>
+                    <img v-bind:src="result.image" alt="Card image cap">
+                </header> -->
+            <h3 style="margin-bottom: 10px;"><a v-bind:href="'/wiki/' + result.url">
+                {{ result.title }}
+            </a></h3>
+            <p v-html="result.description"></p>
+            <hr>
+        </acticle>
+    </header>
+
+    <script>
+        new Vue({
+            el: "#app",
+            data() {
+                return {
+                    query: "",
+                    results: []
+                }
+            },
+
+            methods: {
+                update_previews() {
+                    axios
+                        .get('/api/wikipedia/search/' + this.query)
+                        .then(response => (
+                            this.results = response.data.results
+                        ))
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} | wikipedia-next</title>
+    <link rel="stylesheet" href="/static/css/pico.min.css">
+    <link rel="stylesheet" href="/static/css/custom.css">
+    <link rel="stylesheet" href="/static/css/page_styles.css">
+</head>
+
+<body>
+    <div class="hero" style="background-image: url({{ image }})" data-theme="dark">
+
+        <div class="black_filter">
+            <nav>
+                <ul style="font-family: monospace; margin-left: 1em;">
+                    <li class="contrast"><a href="/"><strong>wikipedia-next</strong></a></li>
+                </ul>
+            </nav>
+            <header class="container">
+                <hgroup style="margin-bottom: 0">
+                    <h1>{{ title }}</h1>
+                    <p>{{ description|safe }}</p>
+                </hgroup>
+            </header>
+        </div>
+    </div>
+
+    <main class="container">
+        <!-- <div class="grid"> -->
+
+        <section>
+            {{ text|safe }}
+        </section>
+
+        <!-- <aside>
+
+                {% for link in links %}
+
+                <a href="{{ link.url }}"><img src="{{ image }}"></a>
+                <p>
+                    <a href="{{ link.url }}">{{ link.title }}</a><br>
+                    <small>{{ link.description|safe }}</small>
+                </p>
+
+                {% endfor %}
+            </aside> -->
+
+        <!-- </div> -->
+    </main>
+</body>
+
+</html>

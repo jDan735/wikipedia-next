@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og://ogp.me/ns#">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" type="image/png" href="{% static '/images/favicon-16x16.png' %}" sizes="16x16">
+    <link rel="icon" type="image/png" href="{% static '/images/favicon-32x32.png' %}" sizes="32x32">
+    <link rel="icon" type="image/png" href="{% static '/images/favicon-96x96.png' %}" sizes="96x96">
+    <link rel="stylesheet" href="{% static '/css/style.css' %}">
+
+    <meta property="og:site_name" content="jdan734.me">
+    <meta property="og:title" content="Home" />
+    <meta property="og:image" content="/images/jdan_frog.jpg" />
+    <meta property="og:description" content="Kaiser's personal site, hosted in Linode." />
+
+    <title>{% block title %}{% endblock %}</title>
+
+    {% block head %} {% endblock %}
+</head>
+
+<body>
+    <nav {% block nav %}{% endblock %}>
+        <a href="/" class="logo">Wikipedia-next</a>
+    </nav>
+
+    {% block body %}
+    <div class="content">
+        {% block content %} {% endblock %}
+    </div>
+    {% endblock %}
+</body>
+
+</html>
