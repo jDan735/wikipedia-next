@@ -1,4 +1,4 @@
 
-FROM traefik:v2.2
+FROM nginx/unit:1.23.0-python3.9
 
 COPY ./traefik.toml ./etc/traefik/traefik.toml
