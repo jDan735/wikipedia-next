@@ -6,3 +6,4 @@ wikipya==4.0.0b0.post2
 pydantic
 jinja2
 gunicorn
+django_heroku
