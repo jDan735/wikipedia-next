@@ -1,1 +1,1 @@
-web: gunicorn wikipedia_next.wsgi:application -k uvicorn.workers.UvicornWorker
+web: gunicorn wikipedia_next.asgi:application -k uvicorn.workers.UvicornWorker
