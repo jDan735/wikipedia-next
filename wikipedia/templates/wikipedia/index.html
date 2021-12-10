@@ -19,7 +19,7 @@
             <a style="margin-left: 1em;" href="/about">About</a>
         </center>
         <div class="grid">
-            <input @focusout="update_previews" v-model="query" id="search" type="search" placeholder="Искать в Википедии">
+            <input v-on:keyup.enter="update_previews" @focusout="update_previews" v-model="query" id="search" type="search" placeholder="Искать в Википедии">
             <!--<input type="button" value="Поиск" v-on:click="update_previews">-->
         </div>
 

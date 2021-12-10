@@ -22,6 +22,7 @@ urlpatterns = [
     path('about', include('about_page.urls')),
     path('', views.wikipedia_search),
     path('wiki/', include('wikipedia.urls')),
+    path('w/index.php', views.indexphp_proxy),
 
     path('api/', include("api.urls"))
 ]

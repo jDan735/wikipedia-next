@@ -1,6 +1,6 @@
 import random
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 # Create your views here.
 from django.http import HttpResponse
@@ -10,6 +10,10 @@ from wikipya import Wikipya
 from bs4 import BeautifulSoup
 
 import httpx
+
+
+async def indexphp_proxy(request):
+    return redirect(f"/wiki/{request.GET['title']}")
 
 
 def wikipedia_search(request):
